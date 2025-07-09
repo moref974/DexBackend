@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.send("Hello From Backend");
 });
 
-app.post("/api/swap", async (req, res) => {
+app.post("/api/swaps", async (req, res) => {
   await connectToMongo();
   const { from, to, amount, received, tokenIn, tokenOut, signer } = req.body;
   try {
@@ -42,7 +42,7 @@ app.post("/api/swap", async (req, res) => {
   }
 });
 
-app.get("/api/swaps", async (req, res) => {
+app.get("/api/swap", async (req, res) => {
   await connectToMongo();
   const swaps = await recentSwap.find().sort({ timestamp: -1 }).limit(10);
   res.json(swaps);
